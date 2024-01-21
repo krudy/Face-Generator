@@ -18,8 +18,14 @@ async function getFace(event) {
 
 	try {
 		const response = await fetch(url, options);
-		const result = await response.text();
-		console.log(result);
+		const result = await response.blob();
+		const image = URL.createObjectURL(result);
+		const imageElement = document.createElement('img');
+		const paragraphElement = document.createElement('p');
+		paragraphElement.textContent = url;
+		imageElement.src = image;
+		document.body.appendChild(paragraphElement);
+		document.body.appendChild(imageElement);
 	} catch (error) {
 		console.error(error);
 	}

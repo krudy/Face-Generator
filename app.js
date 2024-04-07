@@ -21,13 +21,11 @@ async function getFace(event) {
         const result = await response.blob();
         const image = URL.createObjectURL(result);
 
-        // Usuwanie istniejącego elementu img
         const existingImage = document.querySelector('#image-container img');
         if (existingImage) {
             existingImage.parentNode.removeChild(existingImage);
         }
 
-        // Tworzenie nowego elementu img i dodawanie go do kontenera
         const imageElement = document.createElement('img');
         imageElement.src = image;
         document.querySelector('#image-container').appendChild(imageElement);
